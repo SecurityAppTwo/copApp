@@ -9,15 +9,16 @@ const Identification = () => {
     const containerStyle = { backgroundColor: 'white', padding: 20, width:'50%', height:'50%', display: 'flex', alignItems: 'center'};
     let info='';
     const check = () => {
-        if(!suspectsids.text && notid.text){
-            info=`${notid.text}
+        if(!suspectsids[text] && notid[text]){
+            info=`${notid[text]}
             האם חשוד: לא`;
-        } else if(suspectsids.text && !notid.text){
-            info=`${suspectsids.text}
-            האם חשוד: לא`;
+        } else if(suspectsids[text] && !notid[text]){
+            info=`${suspectsids[text]}
+            האם חשוד: כן`;
         } else {
             info=`הת.ז לא נמצא במאגר`;
         }
+        alert(info)
         showModal();
 
     }
