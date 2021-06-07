@@ -1,13 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, ImageBackground, Image, View} from 'react-native';
 
-
-export default function HomeOptionCard({optionText, imagePath}) {
+export default function HomeOptionCard({optionText, img}) {
   return (
     <View style={styles.card}>
         <ImageBackground style={styles.iconBackground}>
             <Text style={styles.iconText}>{optionText}</Text>
-            <Image source={require(imagePath)}
+            <Image source={img}
                         style={styles.icon}>
             </Image>
          </ImageBackground>
@@ -16,7 +15,7 @@ export default function HomeOptionCard({optionText, imagePath}) {
 }
 
 const styles = StyleSheet.create({
-    iconText:{
+    iconText:{ 
         fontWeight: 'bold',
         fontSize: 32,
         color: 'black',

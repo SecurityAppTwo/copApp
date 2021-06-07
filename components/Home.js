@@ -1,44 +1,36 @@
 import React from 'react';
-import { StyleSheet, Text, View , Image, ImageBackground, Button, Icon} from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import HomeOptionCard from './HomeOptionCard';
-import { color } from 'react-native-elements/dist/helpers';
+import { Actions } from 'react-native-router-flux';
+
+import paraltaLogo from '../assets/jakeParalta.png';
+import mapImg from '../assets/map.png';
+import fingerprintImg from '../assets/fingerprint.png';
+import reportImg from '../assets/report.png';
 
 
-export default function Home() {
+const Home = () => {
+    const goToAbout = () => {
+       Actions.about()
+    }
+    return (
+       <TouchableOpacity style = {{ margin: 128 }} onPress = {goToAbout}>
+          <Text>This is HOME!</Text>
+       </TouchableOpacity>
+    )
+ }
+
+ 
+
+
+const Home = () => {
   return (<View style={styles.container}>
+      <Image source={paraltaLogo} style={styles.logo}></Image>
       <Text style={styles.header}>מה תרצו לעשות?</Text>
-      <HomeOptionCard optionText='מפה' imagePath='map'/>
-      <HomeOptionCard optionText='דיווח' imagePath='report'/>
-      <HomeOptionCard optionText='זיהוי חשוד' imagePath='fingerprint'/>
+      <HomeOptionCard optionText='דיווח' img={reportImg}/>
+      <HomeOptionCard optionText='זיהוי חשוד' img={fingerprintImg}/>
+      <HomeOptionCard optionText='מפה' img={mapImg}/>
   </View>
-        /* <View style={{flexDirection : 'row'}}>
-            { <Text style={styles.iconText}>מפה</Text>
-            <Image source={require('../assets/map.png')}
-                style={styles.icon} />
-        
-            <Text style={styles.iconText}>זיהוי חשוד</Text>
-            <Image source={require('../assets/fingerprint.png')}
-                style={styles.icon} /> }
-
-            <ImageBackground
-                source={require('../assets/map.png')}
-                style={styles.icon}>
-            <Text style={styles.iconText}>מפה</Text>
-            </ImageBackground>
-
-                
-            <ImageBackground
-                source={require('../assets/fingerprint.png')}
-                style={styles.icon}>
-            <Text style={styles.iconText}>זיהוי חשוד</Text>
-            </ImageBackground>
-
-
-        </View>
-        
-        <Text style={styles.iconText}>דיווח</Text>
-        <Image source={require('../assets/report.png')}
-            style={styles.icon} /> */
   );
 }
 
@@ -51,9 +43,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
+    logo:{
+        height: 135,
+        width: 135,
+        bottom: 50
+    },
+
     header:{
-        fontSize:32,
+        fontSize: 32,
         color:'white',
         fontWeight:'500'
     },
 });
+
+export default Home
