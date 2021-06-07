@@ -1,26 +1,35 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Image, Button } from 'react-native';
+import { StyleSheet, View, Image, Button, Text } from 'react-native';
 import { TextInput, Card } from 'react-native-paper';
 
 export default function SignIn() {
 
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [validationText, setValidationText] = useState('');
 
-  return (
-    <View style={styles.container}>
-        <Image source={require("../assets/nypd.png")}/>
-        <Card style={styles.card}>
-            <View>
-            <TextInput style={styles.input} value={userName} onChangeText={setUserName} placeholder='שם משתמש'/>
-            <TextInput style={styles.input} value={password} onChangeText={setPassword} placeholder='סיסמא'/>
+
+    const onLogIn = () => {
+        fetch('localhost:8080/users/validateUser')
+        .then(result => setValidationText(result.data ? 'המשתמש יכול להתחבר' : 'אחד מפרטי ההתחברות שגויים'))
+        .catch(error => setValidationText('התחרשה שגיאה בהתחברות'))
+    }
+
+    return (
+        <View style={styles.container}>
+            <Image source={require("../assets/nypd.png")}/>
+            <Card style={styles.card}>
+                <View>
+                <TextInput style={styles.input} value={userName} onChangeText={setUserName} placeholder='שם משתמש'/>
+                <TextInput style={styles.input} value={password} onChangeText={setPassword} placeholder='סיסמא'/>
+                </View>
+            </Card>
+            <View style={styles.button}>
+                <Button color="blue" title="התחבר" onPress={onLogIn}/>
             </View>
-        </Card>
-        <View style={styles.button}>
-        <Button color="blue" title="התחבר" onPress={() => {console.log('hey')}}/>
+            <Text>{validationText}</Text>
         </View>
-    </View>
-  );
+    );
 }
 
 const styles = StyleSheet.create({
