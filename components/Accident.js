@@ -22,15 +22,13 @@ export default function Report() {
           </View>
       </View>
     </View>
-
-    
   );
+      
 }
 
 const styles = StyleSheet.create({
   detailsBlock : {
     backgroundColor: "#0e1001",
-    width: 500,
 
   },  
   row: {

@@ -32,7 +32,6 @@ export default function Report() {
 const styles = StyleSheet.create({
   detailsBlock : {
     backgroundColor: "#0e1001",
-    width: 500,
 
   },  
   row: {
