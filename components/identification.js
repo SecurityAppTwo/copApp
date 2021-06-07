@@ -1,54 +1,55 @@
-import React, { useEffect } from 'react';
-import { View, KeyboardAvoidingView, TextInput, StyleSheet, Platform, TouchableWithoutFeedback, Keyboard, ImageBackground, Alert } from 'react-native';
-import { Modal, Portal, Text, Button, Provider } from 'react-native-paper';
-
+import React from 'react';
+import { View, TextInput, StyleSheet, ImageBackground, Alert } from 'react-native';
+import { Text, Button} from 'react-native-paper';
+const axios = require('axios');
 const Identification = () => {
     let [text, onChangeText] = React.useState(null);
-    const [suspect, setSuspect] = React.useState(undefined);
-
-    // const [visible, setVisible] = React.useState(false);
-    // const showModal = () => { setVisible(true) };
-    // const hideModal = () => setVisible(false);
-    // const [suspect, setSuspect] = React.useState('');
-    useEffect((suspect) => {
+    const createTwoButtonAlert = (suspect) => {
         Alert.alert(
             `${suspect.name}`,
             `האם חשוד: ${suspect.isSuspect ? 'כן' : 'לא'}`,
             [
                 {
-                    text: "Cancel",
+                    text: "סגירה",
                     onPress: () => console.log("Cancel Pressed"),
                     style: "cancel"
-                },
-                { text: "OK", onPress: () => console.log("OK Pressed") }
+                }
             ]
         );
-    }, [suspect]);
+    }
+
+    const createAlert=()=>{
+        Alert.alert(
+            `הת.ז לא נמצא במאגר`,
+            ``,
+            [
+                {
+                    text: "סגירה",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                }
+            ]
+        );
+    }
 
 
-    const containerStyle = { backgroundColor: 'white', padding: 20, width: '50%', height: '50%', display: 'flex', alignItems: 'center' };
-    const check = () => {
+    const check =  () => {
         let suspect;
-        if (!suspectsids[text] && notid[text]) {
-            suspect = {name: notid[text], isSuspect: false};
-            setSuspect({name: notid[text], isSuspect: false});
-        } else if (suspectsids[text] && !notid[text]) {
-            suspect = {name: suspectsids[text], isSuspect: true}
-            setSuspect({name: suspectsids[text], isSuspect: true});
-        } else {
-            setInfo('הת.ז לא נמצא במאגר')
-        }
-        // showModal();
-        alert(text)
-        // alert(suspect)
-        // createTwoButtonAlert(suspect);
+    axios.get(`http://app-api-f-intelscraping2.apps.openforce.openforce.biz/profile/id/${text}/isSuspect`)
+  .then((res)=> {   
+      if(res.data.firstname) {
+          const { firstname, lastname, isSuspect } = res.data;
+          suspect={ name:`${firstname} ${lastname}`, isSuspect };
+          createTwoButtonAlert(suspect);
+      } else {
+          createAlert();
+      }
+  })
+  .catch((err)=> {
+    alert(err);
+  });
+        
     }
-    const notid = {
-        "000000000": "lili blabla"
-    }
-    const suspectsids = {
-        "123456789": "ג'ק המחסל"
-    };
 
     return (
         <ImageBackground source={require('../assets/id.jpg')} style={styles.image}>
@@ -57,7 +58,7 @@ const Identification = () => {
                     <Text style={styles.header} >זיהוי לפי ת.ז</Text>
                     <Text style={styles.id}>הכנס מס' תעודת זהות</Text>
                     <TextInput style={styles.textInput} onChangeText={(val) => onChangeText(val)}
-                        value={text}  />
+                        value={text} />
                 </View>
                 <View style={styles.btnContainer}>
                     <Button title="קבל מידע רלוונטי" onPress={() => check()} >
