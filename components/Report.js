@@ -1,24 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Button, Picker, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, Button, ImageBackground } from 'react-native';
 import CustomPicker from 'react-native-picker-select'
-import Pages from './Pages.js'
+import { Card } from 'react-native-elements'
 import StabbingBlock from './Stabbing.js';
 import MurderBlock from './Murder.js';
 import KidnapBlock from './Kidnapping';
 import AccidentBlock from './Accident';
+
 export default function Report() {
-  const [selected, onChangeSelected] = React.useState("");
+  let [selected, onChangeSelected] = React.useState("");
+  let selectedBlock = "";
   return (
     <ImageBackground source={require('../assets/brickback.jpg')} style={styles.container}>
-
-
       <View style={styles.upperPart}>
       <Text style={styles.header}>הזנת דיווח</Text>
       </View>
       <View style={styles.midPart}>
         <View>
-        <CustomPicker selectedValue={selected}
+        {/* <CustomPicker selectedValue={selectedBlock}
          onValueChange={(value) =>onChangeSelected(value)}
          items={[
           {label:"רצח", value:"murder"},
@@ -27,12 +27,7 @@ export default function Report() {
           {label:"תאונה", value:"accident"}
         ]}>
           
-        </CustomPicker>
-        {/* <Picker selectedValue={selected}
-          onValueChange={(value) => onChangeSelected(value)}>
-            <Picker.Item label></Picker.Item>
-
-          </Picker> */}
+        </CustomPicker> */}
         </View>
       
         <View style={styles.reportBlock} >
@@ -43,9 +38,15 @@ export default function Report() {
       </View>
       </View>
       <View style={styles.bottomPart}>
+        <View style={styles.row}>
+          <Button style={styles.roundedButton} onPress={() => {onChangeSelected("murder")}} title="רצח" color="rgb(51, 173, 255)"></Button>
+          <Button style={styles.roundedButton} onPress={() => {onChangeSelected("kidnap")}} title="חטיפה" color="rgb(51, 173, 255)"></Button>
+          <Button style={styles.roundedButton} onPress={() => {onChangeSelected("accident")}} title="תאונה" color="rgb(51, 173, 255)"></Button>
+          <Button style={styles.roundedButton} onPress={() => {onChangeSelected("stabbing")}} title="דקירה" color="rgb(51, 173, 255)"></Button>
+        </View>
       <Button title="שלח דיווח" style={styles.sendButton}></Button>
       </View>
-
+     
     </ImageBackground>
 
 
@@ -54,15 +55,24 @@ export default function Report() {
 }
 
 const styles = StyleSheet.create({
+  roundedButton: {
+    borderRadius: "100%",
+    backgroundColor: "#FFFFFF"
+  },
+  row : {
+    flexDirection: "row",
+    justifyContent: "space-around"
+  },
   upperPart : {
-    height: 100,
+    height: "10%",
     marginTop: 100
   },
   midPart: {
-    height: 300
+    height: "60%"
   },
   bottomPart : {
-    height: 200
+    height: "10%",
+    width: "100%"
   },
   reportBlock : {
     width: 300,
@@ -84,7 +94,8 @@ const styles = StyleSheet.create({
     color: "midnightblue"
   },
   sendButton: {
-    backgroundColor: "#000000"
+    backgroundColor: "#000000",
+    width: "30%"
   },
   itemNotSelectedBox : {
     marginTop: 15,

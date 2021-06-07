@@ -1,10 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
-import {Block} from 'react-native-block'
+import { Card } from 'react-native-elements'
+
 export default function Report() {
   return (
     <View style={styles.detailsBlock}>
+      <Card>
+          <Card.Title>דיווח על אירוע תאונה</Card.Title>
+          <Card.Divider/>
+          <Card.Image source={require("../assets/accident.png")}></Card.Image>
       <View style={styles.row} >
           <View style={styles.col}>
               <TextInput style={styles.inputBox}></TextInput>
@@ -21,6 +26,7 @@ export default function Report() {
                 <Text style={styles.textBox}>זהות המדווח</Text>
           </View>
       </View>
+      </Card>
     </View>
   );
       
