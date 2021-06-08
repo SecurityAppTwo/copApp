@@ -1,7 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
-import {Block} from 'react-native-block'
+
 export default function Report() {
   return (
     <View style={styles.detailsBlock}>
