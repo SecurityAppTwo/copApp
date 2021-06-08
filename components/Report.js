@@ -11,8 +11,8 @@ export default function Report() {
   
   // ### Adjust Dates ###
 
-  let stabbingDetails = {stabber: '', weaponType:'', injuredCount:0, date:new Date(), injuredType: 1, lon:0, lat:0, reportedBy: 1};
-  let shootingDetails = {shooter:'', weaponType:'', injuredCount:0, date:new Date(), injuredType: 1, lon:0, lat:0, reportedBy: 1};
+  let stabbingDetails = {stabber: '', weaponType:'', injuredCount:0, date:new Date(), injuredType: '', lon:0, lat:0, reportedBy: 1};
+  let shootingDetails = {shooter:'', weaponType:'', injuredCount:0, date:new Date(), injuredType: '', lon:0, lat:0, reportedBy: 1};
   let kidnapDetails = {kidnapper:'', kidnapped:'', lastLocation:'', date:new Date(), reportDate:new Date(), lon:0, lat:0, reportedBy: 1};
   let accidentDetails = {injured:'', driver:'', injuredCount:0, date:new Date(), reportDate:new Date(), lon:0, lat:0, reportedBy: 1};
 
@@ -51,7 +51,7 @@ export default function Report() {
               let location = res
               shootingDetails.lat = location.coords.latitude;
               shootingDetails.lon = location.coords.longitude;
-              axios.post('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/shootingEvent', shootingDetails).then(() => alert("success!"))
+              axios.post('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/shootingEvent', shootingDetails).then(() => alert("הדיווח נשלח בהצלחה"))
             });
 
             break;
@@ -60,7 +60,7 @@ export default function Report() {
                   let location = res
                   kidnapDetails.lat = location.coords.latitude;
                   kidnapDetails.lon = location.coords.longitude;
-                  axios.post('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/kidnapEvent', kidnapDetails).then(() => alert("success!"))
+                  axios.post('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/kidnapEvent', kidnapDetails).then(() => alert("הדיווח נשלח בהצלחה"))
                 });
                 
 
@@ -70,7 +70,7 @@ export default function Report() {
                     let location = res
                     accidentDetails.lat = location.coords.latitude;
                     accidentDetails.lon = location.coords.longitude;
-                    axios.post('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/accidentEvent', accidentDetails).then(() => alert("success!"))
+                    axios.post('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/accidentEvent', accidentDetails).then(() => alert("הדיווח נשלח בהצלחה"))
                   });
 
               break;
@@ -79,7 +79,7 @@ export default function Report() {
                     let location = res
                     stabbingDetails.lat = location.coords.latitude;
                     stabbingDetails.lon = location.coords.longitude;
-                    axios.post('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/stabbingEvent', stabbingDetails).then(() => alert("success!"))
+                    axios.post('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/stabbingEvent', stabbingDetails).then(() => alert("הדיווח נשלח בהצלחה"))
                   });
 
               break;

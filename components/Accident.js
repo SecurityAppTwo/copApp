@@ -25,7 +25,7 @@ export default function Report({accidentInfo}) {
               onValueChange={toggleSwitch}
               value={isEnabled}
               /> */}
-              {/* <TextInput style={styles.inputBox} onChangeText={(text) => accidentInfo.injuredType = text}></TextInput> */}
+              <TextInput style={styles.inputBox} onChangeText={(text) => accidentInfo.injured = text}></TextInput>
 
 
               <TextInput style={styles.inputBox} onChangeText={(text) => accidentInfo.driver = text}></TextInput>
@@ -34,7 +34,7 @@ export default function Report({accidentInfo}) {
               <TextInput style={styles.inputBox} onChangeText={(text) => accidentInfo.reportedBy = 1}></TextInput>
           </View>
           <View style={styles.col}>
-                {/* <Text style={styles.textBox}>פירוט נפגעים</Text> */}
+                <Text style={styles.textBox}>פירוט נפגעים</Text>
                 <Text style={styles.textBox}>נהג פוגע</Text>
                 <Text style={styles.textBox}>כמות פצועים</Text>
                 <Text style={styles.textBox}>זמן האירוע</Text>
