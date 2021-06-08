@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Button, ImageBackground } from 'react-native';
-import CustomPicker from 'react-native-picker-select'
+// import CustomPicker from 'react-native-picker-select'
 import { Card } from 'react-native-elements'
 import StabbingBlock from './Stabbing.js';
 import ShootingBlock from './Shooting.js';
@@ -54,7 +54,7 @@ export default function Report() {
               let location = res
               shootingDetails.lat = location.coords.latitude;
               shootingDetails.lon = location.coords.longitude;
-              axios.post('http://localhost:8080/reports/add/shootingEvent', shootingDetails).then(() => alert("success!"))
+              axios.post('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/shootingEvent', shootingDetails).then(() => alert("success!"))
             });
 
             break;
@@ -63,7 +63,7 @@ export default function Report() {
                   let location = res
                   kidnapDetails.lat = location.coords.latitude;
                   kidnapDetails.lon = location.coords.longitude;
-                  axios.post('http://localhost:8080/reports/add/kidnapEvent', kidnapDetails).then(() => alert("success!"))
+                  axios.post('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/kidnapEvent', kidnapDetails).then(() => alert("success!"))
                 });
                 
 
@@ -73,7 +73,7 @@ export default function Report() {
                     let location = res
                     accidentDetails.lat = location.coords.latitude;
                     accidentDetails.lon = location.coords.longitude;
-                    axios.post('http://localhost:8080/reports/add/accidentEvent', accidentDetails).then(() => alert("success!"))
+                    axios.post('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/accidentEvent', accidentDetails).then(() => alert("success!"))
                   });
 
               break;
@@ -82,7 +82,7 @@ export default function Report() {
                     let location = res
                     stabbingDetails.lat = location.coords.latitude;
                     stabbingDetails.lon = location.coords.longitude;
-                    axios.post('http://localhost:8080/reports/add/stabbingEvent', stabbingDetails).then(() => alert("success!"))
+                    axios.post('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/stabbingEvent', stabbingDetails).then(() => alert("success!"))
                   });
 
               break;
