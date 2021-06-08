@@ -33,15 +33,17 @@ export default function Loc() {
   if (errorMsg) {
     text = errorMsg;
   } else if (location) {
+      text=""
       crad=JSON.stringify(location);
       nearCrad=JSON.stringify(location);
+    // nearCrad='1';
       if(crad===nearCrad){
         pushNotification(crad);
       }
   }
 
   return (
-    <View style={styles.container}>
+    <View >
       <Text style={styles.paragraph}>{text}</Text>
     </View>
   );

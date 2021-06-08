@@ -36,14 +36,14 @@ export default function Notify() {
   }, []);
 
   return (
-        <View style={styles.container}>
-      <Button
+        <View >
+      {/* <Button
         title="Press to schedule a notification"
         onPress={async () => {
           await schedulePushNotification();
         }}
       />
-      <StatusBar style="auto" />
+      <StatusBar style="auto" /> */}
     </View>
   );
 }
@@ -57,16 +57,16 @@ const styles = StyleSheet.create({
   },
 });
 
-async function schedulePushNotification() {
-  await Notifications.scheduleNotificationAsync({
-    content: {
-      title: "You've got mail! 📬",
-      body: 'Here is the notification body',
-      data: { data: 'goes here' },
-    },
-    trigger: { seconds: 2 },
-  });
-}
+// async function schedulePushNotification() {
+//   await Notifications.scheduleNotificationAsync({
+//     content: {
+//       title: "You've got mail! 📬",
+//       body: 'Here is the notification body',
+//       data: { data: 'goes here' },
+//     },
+//     trigger: { seconds: 2 },
+//   });
+// }
 
 async function registerForPushNotificationsAsync() {
   let token;
