@@ -1,11 +1,21 @@
+import axios from 'axios';
 import React, { useState } from 'react';
-import { StyleSheet, View, Image, Button } from 'react-native';
+import { StyleSheet, View, Image, Button, Text } from 'react-native';
 import { TextInput, Card } from 'react-native-paper';
 
 export default function SignIn() {
 
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [text, setText] = useState('');
+
+    const login = () => {
+      axios.get(`http://police-server-securityapp2.apps.openforce.openforce.biz//users/validateUser?username=${userName}&password=${password}`)
+        .then(result => {
+          console.log(result);
+        })
+        .catch(error => console.log(error.message));
+    }
 
   return (
     <View style={styles.container}>
@@ -17,7 +27,8 @@ export default function SignIn() {
             </View>
         </Card>
         <View style={styles.button}>
-        <Button color="blue" title="התחבר" onPress={() => {console.log('hey')}}/>
+        <Button color="blue" title="התחבר" onPress={login}/>
+        <Text>{text}</Text>
         </View>
     </View>
   );
