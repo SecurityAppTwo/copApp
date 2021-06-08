@@ -67,7 +67,6 @@ const Identification = () => {
                     </Button>
 
                 </View>
-
             </View>
         </ImageBackground>
     );
@@ -81,7 +80,6 @@ const styles = StyleSheet.create({
         fontSize: 36,
         padding: 24,
         flex: 1,
-
 
     },
     header: {

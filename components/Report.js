@@ -1,8 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Button, ImageBackground } from 'react-native';
-import CustomPicker from 'react-native-picker-select'
-import { Card } from 'react-native-elements'
 import StabbingBlock from './Stabbing.js';
 import ShootingBlock from './Shooting.js';
 import KidnapBlock from './Kidnapping';
