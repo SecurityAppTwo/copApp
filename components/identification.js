@@ -67,7 +67,6 @@ const Identification = () => {
                     </Button>
 
                 </View>
-
             </View>
         </ImageBackground>
     );
