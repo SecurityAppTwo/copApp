@@ -19,9 +19,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 32,
         color: 'black',
-        position: 'absolute', // child
+        position: 'absolute', // childs
         bottom: 40,
-        right: 15 // position where you wants  
+        right: 25, // position where you wants
     },
 
     icon: {
@@ -32,9 +32,9 @@ const styles = StyleSheet.create({
 
     iconBackground:{  
         height: 120,
-        width: 350,
+        width: 340,
         backgroundColor: '#ffffff',
-        borderRadius: 35,
+        borderRadius: 60,
       },
 
       card: {

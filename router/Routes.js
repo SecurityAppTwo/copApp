@@ -1,14 +1,25 @@
-import React from 'react'
-import { Router, Scene } from 'react-native-router-flux'
-import Home from '../components/Home.js';
-import About from '../components/About.js';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const Routes = () => (
-   <Router>
-      <Scene key = "root">
-         <Scene key = "home" component = {Home} title = "Home" initial = {true} />
-         <Scene key = "about" component = {About} title = "About" />
-      </Scene>
-   </Router>
-)
-export default Routes
+import Home from '../components/Home.js';
+import Report from '../components/Report.js';
+
+const Stack = createStackNavigator();
+
+const MyStack = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="Report" component={Report}  options={{ headerShown: false }} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default MyStack

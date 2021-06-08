@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import HomeOptionCard from './HomeOptionCard';
-import { Actions } from 'react-native-router-flux';
 
 import paraltaLogo from '../assets/jakeParalta.png';
 import mapImg from '../assets/map.png';
@@ -9,29 +8,22 @@ import fingerprintImg from '../assets/fingerprint.png';
 import reportImg from '../assets/report.png';
 
 
-const Home = () => {
-    const goToAbout = () => {
-       Actions.about()
-    }
-    return (
-       <TouchableOpacity style = {{ margin: 128 }} onPress = {goToAbout}>
-          <Text>This is HOME!</Text>
-       </TouchableOpacity>
-    )
- }
-
- 
+const Home = ({navigation}) => {
+    const gotToReport = () => {
+        navigation.navigate('Report')
+     }
 
 
-const Home = () => {
-  return (<View style={styles.container}>
-      <Image source={paraltaLogo} style={styles.logo}></Image>
-      <Text style={styles.header}>מה תרצו לעשות?</Text>
-      <HomeOptionCard optionText='דיווח' img={reportImg}/>
-      <HomeOptionCard optionText='זיהוי חשוד' img={fingerprintImg}/>
-      <HomeOptionCard optionText='מפה' img={mapImg}/>
-  </View>
-  );
+return(
+  <View style={styles.container}>
+    <Image source={paraltaLogo} style={styles.logo}></Image>
+    <Text style={styles.header}>מה תרצו לעשות?</Text>
+    <TouchableOpacity onPress = {gotToReport}>
+        <HomeOptionCard optionText='דיווח' img={reportImg}/>
+    </TouchableOpacity>
+    <HomeOptionCard optionText='זיהוי חשוד' img={fingerprintImg}/>
+    <HomeOptionCard optionText='מפה' img={mapImg}/>
+  </View>)
 }
 
 const styles = StyleSheet.create({
