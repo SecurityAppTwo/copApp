@@ -6,6 +6,8 @@ import Notify from './components/notification.js';
 import Loc from './components/locations.js';
 import RNEventSource from 'react-native-event-source'
 import Report from './components/Report.js'
+import { NavigationContainer } from '@react-navigation/native';
+import Navbar from './navbar/Navbar.js';
 
 export default function App() {
   const [ facts, setFacts ] = useState([]);
@@ -15,7 +17,7 @@ export default function App() {
     if (!listening) {
    
       // const events = new EventSource('http://localhost:8080/events');
-      const events = new RNEventSource('http://localhost:8080/events');
+      const events = new RNEventSource('http://police-server-securityapp2.apps.openforce.openforce.biz/events');
 
       // events.addEventListener( (event) => {
       //   alert("i am here")
@@ -42,7 +44,10 @@ export default function App() {
 
 
   return (
-    <Routes></Routes>
+    <NavigationContainer>
+      <Navbar></Navbar>
+    </NavigationContainer>
+    // <Routes></Routes>
   );
 };
 

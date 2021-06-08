@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+
 import HomeOptionCard from './HomeOptionCard';
 
 import paraltaLogo from '../assets/jakeParalta.png';
 import mapImg from '../assets/map.png';
 import fingerprintImg from '../assets/fingerprint.png';
 import reportImg from '../assets/report.png';
-
+// import Navbar from './Navbar';
 
 const Home = ({navigation}) => {
     const gotToReport = () => {
@@ -15,6 +16,10 @@ const Home = ({navigation}) => {
 
     const gotToIdentification = () => {
         navigation.navigate('Identification')
+    }
+
+    const goToMap = () => {
+        navigation.navigate('Map')
     }
 
 return(
@@ -30,7 +35,11 @@ return(
         <HomeOptionCard optionText='זיהוי חשוד' img={fingerprintImg}/>
     </TouchableOpacity>
 
-    <HomeOptionCard optionText='מפה' img={mapImg}/>
+    <TouchableOpacity onPress = {goToMap}>
+        <HomeOptionCard optionText='מפה' img={mapImg}/>
+    </TouchableOpacity>
+
+    {/* <Navbar></Navbar> */}
   </View>)
 }
 

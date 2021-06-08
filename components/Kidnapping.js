@@ -1,8 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { Card } from 'react-native-elements'
-import { color } from 'react-native-elements/dist/helpers';
 
 export default function Report({kidnapInfo}) {
   return (
@@ -41,6 +39,7 @@ const styles = StyleSheet.create({
     },  
   row: {
     justifyContent: 'space-around',
+    // innerHeight: 40,
     flexDirection: "row"
   },
   col: {
