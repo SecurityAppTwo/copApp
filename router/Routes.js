@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from '../components/Home.js';
 import Report from '../components/Report.js';
-import Identification from '../components/Identification.js'
+import Identification from '../components/identification.js'
 
 const Stack = createStackNavigator();
 
