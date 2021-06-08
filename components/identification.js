@@ -7,7 +7,7 @@ const Identification = () => {
     const createTwoButtonAlert = (suspect) => {
         Alert.alert(
             `${suspect.name}`,
-            `האם חשוד: ${suspect.isSuspect ? 'כן' : 'לא'}`,
+            `האם חשוד: ${suspect.isSuspect==="true" ? 'כן' : 'לא'}`,
             [
                 {
                     text: "סגירה",
