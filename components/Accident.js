@@ -3,11 +3,13 @@ import { StyleSheet, Text, View, TextInput, Switch} from 'react-native';
 import { Card } from 'react-native-elements'
 
 export default function Report({accidentInfo}) {
-  const [isEnabled, setIsEnabled] = React.useState(false);
-  const toggleSwitch = () => {
-    isEnabled? accidentInfo.injuredType = 2 : accidentInfo.injuredType = 1
-    setIsEnabled(previousState => !previousState);
-  };
+
+  // const [isEnabled, setIsEnabled] = React.useState(false);
+  // const toggleSwitch = () => {
+  //   isEnabled? accidentInfo.injuredType = 2 : accidentInfo.injuredType = 1
+  //   setIsEnabled(previousState => !previousState);
+  // };
+
   return (
     <View style={styles.detailsBlock}>
       <Card containerStyle={styles.card}>
@@ -16,19 +18,23 @@ export default function Report({accidentInfo}) {
           <Card.Image source={require("../assets/accident.png")}></Card.Image>
       <View style={styles.row} >
           <View style={styles.col}>
-              <Switch style={{marginLeft: 40, marginTop:5, marginBottom: 10}}
+              
+              {/* <Switch style={{marginLeft: 40, marginTop:5, marginBottom: 10}}
               trackColor={{ false: "#767577", true: "rgb(128, 204, 255)" }}
               thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
               onValueChange={toggleSwitch}
               value={isEnabled}
-              />
+              /> */}
+              <TextInput style={styles.inputBox} onChangeText={(text) => accidentInfo.injured = text}></TextInput>
+
+
               <TextInput style={styles.inputBox} onChangeText={(text) => accidentInfo.driver = text}></TextInput>
               <TextInput style={styles.inputBox} onChangeText={(text) => accidentInfo.injuredCount = text}></TextInput>
               <TextInput style={styles.inputBox} onChangeText={(text) => accidentInfo.date = new Date()}></TextInput>
               <TextInput style={styles.inputBox} onChangeText={(text) => accidentInfo.reportedBy = 1}></TextInput>
           </View>
           <View style={styles.col}>
-                <Text style={styles.textBox}>נפגעים מכוחותינו?</Text>
+                <Text style={styles.textBox}>פירוט נפגעים</Text>
                 <Text style={styles.textBox}>נהג פוגע</Text>
                 <Text style={styles.textBox}>כמות פצועים</Text>
                 <Text style={styles.textBox}>זמן האירוע</Text>
