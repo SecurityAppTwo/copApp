@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { StyleSheet, View, Image, Button, Text } from 'react-native';
 import { TextInput, Card } from 'react-native-paper';
@@ -6,13 +7,14 @@ export default function SignIn() {
 
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    const [validationText, setValidationText] = useState('');
+    const [text, setText] = useState('');
 
-
-    const onLogIn = () => {
-        fetch('localhost:8080/users/validateUser')
-        .then(result => setValidationText(result.data ? 'המשתמש יכול להתחבר' : 'אחד מפרטי ההתחברות שגויים'))
-        .catch(error => setValidationText('התחרשה שגיאה בהתחברות'))
+    const login = () => {
+      axios.get(`http://localhost:8080/users/validateUser?username=${userName}&password=${password}`)
+        .then(result => {
+          console.log(result);
+        })
+        .catch(error => console.log(error.message));
     }
 
     return (
@@ -25,9 +27,9 @@ export default function SignIn() {
                 </View>
             </Card>
             <View style={styles.button}>
-                <Button color="blue" title="התחבר" onPress={onLogIn}/>
+                <Button color="blue" title="התחבר" onPress={login}/>
             </View>
-            <Text>{validationText}</Text>
+            <Text>{text}</Text>
         </View>
     );
 }
