@@ -82,7 +82,6 @@ const styles = StyleSheet.create({
         padding: 24,
         flex: 1,
 
-
     },
     header: {
         fontSize: 36,
