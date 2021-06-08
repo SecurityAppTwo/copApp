@@ -11,17 +11,25 @@ import reportImg from '../assets/report.png';
 const Home = ({navigation}) => {
     const gotToReport = () => {
         navigation.navigate('Report')
-     }
+    }
 
+    const gotToIdentification = () => {
+        navigation.navigate('Identification')
+    }
 
 return(
   <View style={styles.container}>
     <Image source={paraltaLogo} style={styles.logo}></Image>
     <Text style={styles.header}>מה תרצו לעשות?</Text>
+
     <TouchableOpacity onPress = {gotToReport}>
         <HomeOptionCard optionText='דיווח' img={reportImg}/>
     </TouchableOpacity>
-    <HomeOptionCard optionText='זיהוי חשוד' img={fingerprintImg}/>
+
+    <TouchableOpacity onPress = {gotToIdentification}>
+        <HomeOptionCard optionText='זיהוי חשוד' img={fingerprintImg}/>
+    </TouchableOpacity>
+
     <HomeOptionCard optionText='מפה' img={mapImg}/>
   </View>)
 }

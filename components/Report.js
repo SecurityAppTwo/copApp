@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Picker } from 'react-native';
-import {Block} from 'react-native-block'
+import { Text, View, Button, Picker } from 'react-native';
 import StabbingBlock from './Stabbing.js'
 
 export default function Report() {
@@ -22,5 +21,3 @@ export default function Report() {
     </View>
   );
 }
-
-export default Report
