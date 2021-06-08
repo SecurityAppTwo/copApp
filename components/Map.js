@@ -1,12 +1,11 @@
 import React from 'react';
 import { StyleSheet,Image, View} from 'react-native';
-
-import mapImg from '../assets/map.jpg'
+import { WebView } from 'react-native-webview';
 
 export default function Map() {
   return (
     <View style={styles.container}>
-        <Image source={mapImg} style={styles.mapStyle}></Image>
+        <WebView source={{ uri: 'http://alpha-maps-git-tmzmap2.apps.openforce.openforce.biz/' }} style={{width:420}}/>
     </View>
   );
 }
