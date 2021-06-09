@@ -17,17 +17,19 @@ export default function App() {
 
   useEffect(() => {
 
-  events.addEventListener('message', (event) => {
-    const parsedData = JSON.parse(event.data);
-    if(event.data!=='[]'){
-      let data=event.data;
-      // alert(event.data)
-      notify(data);
-    }
-    setFacts((facts) => facts.concat(parsedData));
-    // console.log(data.type); // message
-    // console.log(data.data);
-  });
+    const events = new RNEventSource('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/subscribe');
+
+    events.addEventListener('message', (event) => {
+      const parsedData = JSON.parse(event.data);
+      if(event.data!=='[]'){
+        let data=event.data;
+        // alert(event.data)
+        notify(data);
+      }
+      setFacts((facts) => facts.concat(parsedData));
+      // console.log(data.type); // message
+      // console.log(data.data);
+    });
   }, []);
 
 
