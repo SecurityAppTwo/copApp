@@ -1,13 +1,14 @@
 import React from 'react';
 import { View, TextInput, StyleSheet, ImageBackground, Alert } from 'react-native';
 import { Text, Button} from 'react-native-paper';
+
 const axios = require('axios');
 const Identification = () => {
     let [text, onChangeText] = React.useState(null);
     const createTwoButtonAlert = (suspect) => {
         Alert.alert(
             `${suspect.name}`,
-            `האם חשוד: ${suspect.isSuspect ? 'כן' : 'לא'}`,
+            `האם חשוד: ${suspect.isSuspect==="true" ? 'כן' : 'לא'}`,
             [
                 {
                     text: "סגירה",
@@ -66,7 +67,6 @@ const Identification = () => {
                     </Button>
 
                 </View>
-
             </View>
         </ImageBackground>
     );
@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
         fontSize: 36,
         padding: 24,
         flex: 1,
-
 
     },
     header: {

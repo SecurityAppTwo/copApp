@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },  
   row: {
     justifyContent: 'space-around',
-    innerHeight: 40,
+    // innerHeight: 40,
     flexDirection: "row"
   },
   col: {
