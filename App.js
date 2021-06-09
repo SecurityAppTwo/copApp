@@ -3,12 +3,13 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Notify , {pushNotification}from './components/notification.js';
-import Loc from './components/locations.js';
+import Loc,{notify} from './components/locations.js';
 import RNEventSource from 'react-native-event-source'
 import Report from './components/Report.js'
 import { NavigationContainer } from '@react-navigation/native';
 import Navbar from './navbar/Navbar.js';
 import axios from 'axios';
+import { getDistance } from 'geolib';
 
 export default function App() {
   const [facts, setFacts] = useState([]);
@@ -19,7 +20,7 @@ export default function App() {
     if (!listening) {
 
       // const events = new EventSource('http://localhost:8080/events');
-      const events = new RNEventSource('http://police-server-securityapp2.apps.openforce.openforce.biz/subscribe');
+      const events = new RNEventSource('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/subscribe');
 
       // events.addEventListener( (event) => {
       //   alert("i am here")
@@ -29,9 +30,10 @@ export default function App() {
 
       events.addEventListener('message', (event) => {
         const parsedData = JSON.parse(event.data);
-        if(event.data!==[]){
-          const mes=`${event.data}  ${event.type}  ${event.origin}`
-          alert(mes)
+        if(event.data!=='[]'){
+          let data=event.data;
+          // alert(event.data)
+          notify(data);
         }
         setFacts((facts) => facts.concat(parsedData));
         // console.log(data.type); // message

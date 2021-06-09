@@ -3,7 +3,9 @@ import { Platform, Text, View, StyleSheet, ActivityIndicator } from 'react-nativ
 import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 import { pushNotification } from './notification.js';
-import { getBoundsOfDistance } from 'geolib';
+import { getDistance } from 'geolib';
+
+let loc=null;
 
 export default function Loc() {
   const [location, setLocation] = useState(null);
@@ -32,8 +34,9 @@ export default function Loc() {
   if (errorMsg) {
     text = errorMsg;
   } else if (location) {
-    text = "location";
+    loc=location;
   }
+
 
   return (
     <View style={styles.container}>
@@ -41,6 +44,19 @@ export default function Loc() {
     </View>
   );
 }
+
+
+export function notify(data){
+  let d=JSON.parse(data)
+          if(getDistance(
+          { latitude: Number(loc.coords.latitude), longitude: Number(loc.coords.longitude) },
+          { latitude: Number(d.lat), longitude:Number(d.lon)}
+      )<= 2000){
+        pushNotification(d);
+        }
+// alert(data["lon"]);
+
+};
 
 const styles = StyleSheet.create({
   container: {

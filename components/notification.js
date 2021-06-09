@@ -99,11 +99,11 @@ async function registerForPushNotificationsAsync() {
   return token;
 }
 
-export async function pushNotification(crad) {
+export async function pushNotification(event) {
   await Notifications.scheduleNotificationAsync({
     content: {
-      title: "your cradentials are",
-      body: `${crad}`,
+      title: `אירוע ${event["type"]}`,
+      body: `קרה קרוב לאזור שלך`,
       data: { data: 'goes here' },
     },
     trigger: { seconds: 2 },
