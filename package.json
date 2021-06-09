@@ -28,6 +28,7 @@
     "react-native-anchor-carousel": "^3.1.2",
     "react-native-banner-carousel": "^1.0.3",
     "react-native-block": "0.0.1",
+    "react-native-dropdown-picker": "^5.1.21",
     "react-native-dynamic-vector-icons": "^1.1.6",
     "react-native-elements": "^3.4.1",
     "react-native-gesture-handler": "~1.10.2",

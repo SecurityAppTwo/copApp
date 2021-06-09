@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState} from 'react';
 import { StyleSheet, Text, View, Button, ImageBackground } from 'react-native';
 import StabbingBlock from './Stabbing.js';
 import ShootingBlock from './Shooting.js';
@@ -6,6 +6,9 @@ import KidnapBlock from './Kidnapping';
 import AccidentBlock from './Accident';
 import axios from 'axios';
 import * as Location from 'expo-location'
+import DropDownPicker from 'react-native-dropdown-picker';
+import {MaterialCommunityIcons, FontAwesome5} from '@expo/vector-icons';
+import ReportDropDown from './ReportDropDown.js';
 
 export default function Report() {
   
@@ -16,7 +19,17 @@ export default function Report() {
   let kidnapDetails = {kidnapper:'', kidnapped:'', lastLocation:'', date:new Date(), reportDate:new Date(), lon:0, lat:0, reportedBy: 1};
   let accidentDetails = {injured:'', driver:'', injuredCount:0, date:new Date(), reportDate:new Date(), lon:0, lat:0, reportedBy: 1};
 
-  let [selected, onChangeSelected] = React.useState("");
+  // const [open, setOpen] = useState(false);
+  // const [value, setValue] = useState(null);
+  // const [items, setItems] = useState([
+  //   {label: 'ירי', value: 'shooting', icon: () => <MaterialCommunityIcons name="target-account" color='#000000' size={24} />},
+  //   {label: 'חטיפה', value: 'kidnap', icon: () => <MaterialCommunityIcons name="account-search" color='#000000' size={24} />},
+  //   {label: 'תאונה', value: 'accident', icon: () => <FontAwesome5 name="car-crash" color='#000000' size={22} />},
+  //   {label: 'דקירה', value: 'stabbing', icon: () => <MaterialCommunityIcons name="knife-military" color='#000000' size={24} />},
+
+  // ]);
+
+  let [selected, onChangeSelected] = useState("");
 
   const saveReport = async (url, details) => {
     let { status } = await Location.requestForegroundPermissionsAsync();
@@ -32,20 +45,41 @@ export default function Report() {
   };
 
   return (
-    <ImageBackground source={require('../assets/brickback.jpg')} style={styles.container}>
+    // ImageBackground source={require('../assets/brickback.jpg')} style={styles.container}
+    <View style={styles.container}>
 
       <View style={styles.upperPart}>
       <Text style={styles.header}>הזנת דיווח</Text>
       </View>
 
       <View style={styles.midPart}>
-        <View style={styles.row}>
-          <Button containerStyle={styles.roundedButton} onPress={() => {onChangeSelected("shooting")}} title="ירי" color="rgba(255, 51, 0, 0.5)"></Button>
+        <ReportDropDown></ReportDropDown>
+        {/* <DropDownPicker 
+              open={open}
+              value={value}
+              items={items}
+              setOpen={setOpen}
+              setValue={setValue}
+              setItems={setItems}
+              placeholder="בחר אירוע"
+              placeholderStyle={{
+                color: "grey",
+                fontWeight: "bold"
+              }}
+              textStyle={{
+                fontSize: 18
+              }}
+              
+            /> */}
+      </View>
+
+{/* <View style={styles.row}>
+          <Button tyle={styles.roundedButton} onPress={() => {onChangeSelected("shooting")}} title="ירי" color="rgba(255, 51, 0, 0.5)"></Button>
           <Button style={styles.roundedButton} onPress={() => {onChangeSelected("kidnap")}} title="חטיפה" color="rgba(255, 51, 0, 0.5)"></Button>
           <Button style={styles.roundedButton} onPress={() => {onChangeSelected("accident")}} title="תאונה" color="rgba(255, 51, 0, 0.5)"></Button>
           <Button style={styles.roundedButton} onPress={() => {onChangeSelected("stabbing")}} title="דקירה" color="rgba(255, 51, 0, 0.5)"></Button>
-        </View>
-      </View>
+        </View>*/}
+      
 
       <View style={styles.bottomPart}>
         <View style={styles.reportBlock} >
@@ -76,7 +110,7 @@ export default function Report() {
       }}></Button>
       </View>
      
-    </ImageBackground>
+    </View>
 
 
     
@@ -102,7 +136,7 @@ const styles = StyleSheet.create({
   },
   midPart : {
     height: "8%",
-    width: "100%"
+    width: "70%"
   },
   reportBlock : {
     width: 300,
