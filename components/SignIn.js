@@ -5,41 +5,37 @@ import { TextInput, Card } from 'react-native-paper';
 import AsyncStorage from '@react-native-community/async-storage'
 // import store from 'react-native-simple-store'
 
-export default function SignIn(validator) {
+export default function SignIn({setIsSignedIn}) {
 
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [text, setText] = useState('');
 
     const login = () => {
-
-      AsyncStorage.setItem('user', {id: 123456}).then(() => {
-        AsyncStorage.getItem('user').then(res => {
-          alert(res.id)
-        });
-      })
-      
-      axios.get(`http://localhost:8080/users/validateUser?username=${userName}&password=${password}`)
+      if (userName && password){
+        axios.get(`http://localhost:8080/users/validateUser?username=${userName}&password=${password}`)
         .then(result => {
-          if (result.isValid){
-            // store.update('user', {userId: result.id})
-            AsyncStorage.setItem('user', {id: result.id}).then(() => {
-              AsyncStorage.getItem('user').then(res => {
-                alert(res)
-              });
-            })
+          if (result.data.isValid){
+            var id = result.data.id;
+            if (result.data.isCop){
+              AsyncStorage.setItem('userId', id);
+              setIsSignedIn(true);
+            } else{
+              alert('אינך שוטר המורשה להיכנס למערכת')
+            }
           } else{
-            alert('w8 what');
+            alert('הסיסמא או שם המשתמש לא נכונים, אנא נסה שוב')
           }
-
-          validator.isValid = result.isValid;
         })
         .catch(error => alert(error.message));
+      } else{
+        alert('אנא מלא את השדות')
+      }
+      
     }
 
     return (
         <View style={styles.container}>
-            <Image source={require("../assets/nypd.png")}/>
             <Card style={styles.card}>
                 <View>
                 <TextInput style={styles.input} value={userName} onChangeText={setUserName} placeholder='שם משתמש'/>
@@ -47,7 +43,7 @@ export default function SignIn(validator) {
                 </View>
             </Card>
             <View style={styles.button}>
-                <Button color="blue" title="התחבר" onPress={login}/>
+                <Button  color="rgba(0,0,0,0.6)" title="התחבר" onPress={login}/>
             </View>
             <Text>{text}</Text>
         </View>
@@ -58,23 +54,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     display: 'flex',
-    backgroundColor: 'rgb(133,134,141)',
+    backgroundColor: 'rgba(0, 102, 204, 0.8)',
     justifyContent: 'center',
     alignItems: 'center'
   },
   card: {
-      margin: '10%',
+      margin: '15%',
       width: '90%',
-      height: '20%',
+      height: '%',
       display: 'flex'
   },
   input: {
     height: 40,
     margin: 12,
     borderWidth: 1,
+    textAlign: "right"
+
   },
   button: {
-    backgroundColor: 'white',
     width: '30%'
   }
 });
