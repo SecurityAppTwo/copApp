@@ -4,6 +4,7 @@ import { StyleSheet, View, Image, Button, Text } from 'react-native';
 import { TextInput, Card } from 'react-native-paper';
 import AsyncStorage from '@react-native-community/async-storage'
 // import store from 'react-native-simple-store'
+import paraltaLogo from '../assets/jakeParalta.png';
 
 export default function SignIn({setIsSignedIn}) {
 
@@ -36,6 +37,7 @@ export default function SignIn({setIsSignedIn}) {
 
     return (
         <View style={styles.container}>
+    <Image source={paraltaLogo} style={styles.logo}></Image>
             <Card style={styles.card}>
                 <View>
                 <TextInput style={styles.input} value={userName} onChangeText={setUserName} placeholder='שם משתמש'/>
@@ -58,17 +60,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  logo:{
+    height: 135,
+    width: 135,
+},
   card: {
       margin: '15%',
       width: '90%',
-      height: '%',
-      display: 'flex'
+      display: 'flex',
+      justifyContent: "center"
   },
   input: {
     height: 40,
     margin: 12,
     borderWidth: 1,
-    textAlign: "right"
+    textAlign: "center"
 
   },
   button: {
