@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, SafeAreaView, ScrollView, View, Pressable } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, ScrollView, View, Pressable , Image} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
 import StabbingBlock from './Stabbing.js';
 import ShootingBlock from './Shooting.js';
 import KidnapBlock from './Kidnapping';
 import AccidentBlock from './Accident';
+
+import paraltaLogo from '../assets/jakeParalta.png';
 
 
 
@@ -35,21 +37,21 @@ export default function Report(){
         <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start' , alignItems: 'center',}}>
         
         <View style={styles.headerView}>
-            <Text style={styles.headerText}>דיווח</Text>
+            <Image source={paraltaLogo} style={styles.logo}></Image>
+            {/* <Text style={styles.headerText}>דיווח</Text> */}
             <View style={styles.dropDownView}>
-
-            <RNPickerSelect
-                onValueChange={(value) => {setValue(value)}}
-                placeholder={{}}
-                style={pickerStyle}
-                // useNativeAndroidPickerStyle={false}
-                items={[
-                {label: 'ירי', value: 'shooting'},
-                {label: 'חטיפה', value: 'kidnap'},
-                {label: 'תאונה', value: 'accident'},
-                {label: 'דקירה', value: 'stabbing'}
-            ]}           
-            />
+                <RNPickerSelect
+                    onValueChange={(value) => {setValue(value)}}
+                    placeholder={{}}
+                    style={pickerStyle}
+                    // useNativeAndroidPickerStyle={false}
+                    items={[
+                    {label: 'ירי', value: 'shooting'},
+                    {label: 'חטיפה', value: 'kidnap'},
+                    {label: 'תאונה', value: 'accident'},
+                    {label: 'דקירה', value: 'stabbing'}
+                ]}           
+                />
             </View>
 
 
@@ -97,6 +99,7 @@ const styles = StyleSheet.create({
         backgroundColor:'rgba(0, 102, 204, 0.8)',
         width:'100%',
         alignItems: 'center',
+        // flexWrap:'nowrap'
 
     },
 
@@ -110,7 +113,7 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth:1,
         textAlign: "center",
-        width: '60%',
+        width: '25%',
         color: "black"
     },
 
@@ -123,7 +126,12 @@ const styles = StyleSheet.create({
         width: '90%',
     },
 
-    pickerStyle:{
+    logo:{
+        top:30,
+        height: 80,
+        width: 80,
+    },
+        pickerStyle:{
         fontSize: 14,
         paddingHorizontal: 10,
         paddingVertical: 8,
