@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import RNEventSource from 'react-native-event-source'
 import { NavigationContainer } from '@react-navigation/native';
 import Navbar from './navbar/Navbar.js';
-import {View} from 'react-native'
 
 export default function App() {
   const [ facts, setFacts ] = useState([]);
