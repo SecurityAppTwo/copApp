@@ -1,13 +1,21 @@
 import React from 'react';
 // import Routes from './router/Routes.js'
+import SignIn from './components/SignIn.js'
 import { NavigationContainer } from '@react-navigation/native';
 import Navbar from './navbar/Navbar.js';
 
 const App = () => {
-  return (
-    <NavigationContainer>
+  var screenSwitcher = (isValid) => {
+    if (isValid){
+      return '<SignIn {isValid: false}></SignIn>'
+    } else{
+      `<NavigationContainer>
       <Navbar></Navbar>
-    </NavigationContainer>
+    </NavigationContainer>`
+    }
+  }
+  return (
+    <SignIn></SignIn>
     // <Routes></Routes>
   );
 };

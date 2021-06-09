@@ -6,6 +6,8 @@ import KidnapBlock from './Kidnapping';
 import AccidentBlock from './Accident';
 import axios from 'axios';
 import * as Location from 'expo-location'
+import AsyncStorage from '@react-native-community/async-storage'
+// import store from 'react-native-simple-store'
 
 export default function Report() {
   
@@ -59,6 +61,8 @@ export default function Report() {
 
       <View style={styles.superBottomPart}>
       <Button title="שלח דיווח" style={styles.sendButton} onPress={() => {
+        alert(AsyncStorage.getItem('user'));
+
         switch(selected){
           case ('shooting'):
             saveReport('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/shootingEvent', shootingDetails);

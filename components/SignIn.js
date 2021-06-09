@@ -2,19 +2,39 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { StyleSheet, View, Image, Button, Text } from 'react-native';
 import { TextInput, Card } from 'react-native-paper';
+import AsyncStorage from '@react-native-community/async-storage'
+// import store from 'react-native-simple-store'
 
-export default function SignIn() {
+export default function SignIn(validator) {
 
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [text, setText] = useState('');
 
     const login = () => {
+
+      AsyncStorage.setItem('user', {id: 123456}).then(() => {
+        AsyncStorage.getItem('user').then(res => {
+          alert(res.id)
+        });
+      })
+      
       axios.get(`http://localhost:8080/users/validateUser?username=${userName}&password=${password}`)
         .then(result => {
-          console.log(result);
+          if (result.isValid){
+            // store.update('user', {userId: result.id})
+            AsyncStorage.setItem('user', {id: result.id}).then(() => {
+              AsyncStorage.getItem('user').then(res => {
+                alert(res)
+              });
+            })
+          } else{
+            alert('w8 what');
+          }
+
+          validator.isValid = result.isValid;
         })
-        .catch(error => console.log(error.message));
+        .catch(error => alert(error.message));
     }
 
     return (
