@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
 import Home from '../components/Home.js';
 import Report from '../components/Report.js';
-import Identification from '../components/identification'
+import Identification from '../components/identification.js'
 
 const Stack = createStackNavigator();
 

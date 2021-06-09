@@ -12,7 +12,7 @@ export default function SignIn({setIsSignedIn}) {
 
     const login = () => {
       if (userName && password){
-        axios.get(`http://localhost:8080/users/validateUser?username=${userName}&password=${password}`)
+        axios.get(`'http://police-server-securityapp2.apps.openforce.openforce.bizusers/validateUser?username=${userName}&password=${password}`)
         .then(result => {
           if (result.data.isValid){
             var id = result.data.id;
