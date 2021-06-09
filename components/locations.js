@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Platform, Text, View, StyleSheet } from 'react-native';
+import { Platform, Text, View, StyleSheet, ActivityIndicator } from 'react-native';
 import Constants from 'expo-constants';
 import * as Location from 'expo-location';
-import {pushNotification} from './notification.js';
-import { getBoundsOfDistance } from 'geolib';
+import { pushNotification } from './notification.js';
+import { getDistance } from 'geolib';
+
+let loc=null;
 
 export default function Loc() {
   const [location, setLocation] = useState(null);
@@ -28,38 +30,49 @@ export default function Loc() {
     })();
   }, []);
 
-  let text = 'Waiting..';
-  let crad='';
-  let nearCrad='';
+  let text = "";
   if (errorMsg) {
     text = errorMsg;
   } else if (location) {
-      text="";
-      let circle=getBoundsOfDistance(
-        { latitude: Number(location.latitude), longitude: Number(location.longitude) },
-       1000
-    );
-    //   crad=JSON.stringify(location);
-    //   nearCrad=JSON.stringify(location);
-    // // nearCrad='1';
-    //   if(crad===nearCrad){
-    //     pushNotification(crad);
-      // }
+    loc=location;
   }
 
+
   return (
-    <View >
-      <Text style={styles.paragraph}>{text}</Text>
+    <View style={styles.container}>
+      <ActivityIndicator animating={text} color='green' size="large" />
     </View>
   );
 }
 
+
+export function notify(data){
+  let d=JSON.parse(data)
+          if(getDistance(
+          { latitude: Number(loc.coords.latitude), longitude: Number(loc.coords.longitude) },
+          { latitude: Number(d.lat), longitude:Number(d.lon)}
+      )<= 2000){
+        pushNotification(d);
+        }
+// alert(data["lon"]);
+
+};
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    // padding: 20,
+  },
+  loading: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
     alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
+    justifyContent: 'center'
   },
   paragraph: {
     fontSize: 18,
