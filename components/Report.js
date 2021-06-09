@@ -9,6 +9,8 @@ import AccidentBlock from './Accident';
 
 import paraltaLogo from '../assets/jakeParalta.png';
 
+import axios from 'axios';
+import * as Location from 'expo-location'
 
 
 export default function Report(){
