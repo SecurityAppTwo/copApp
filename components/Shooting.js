@@ -31,8 +31,6 @@ export default function Report({shootingInfo}) {
               <TextInput style={styles.inputBox} onChangeText={(text) => shootingInfo.shooter = text}></TextInput>
               <TextInput style={styles.inputBox} onChangeText={(text) => shootingInfo.weaponType = text}></TextInput>
               <TextInput style={styles.inputBox} onChangeText={(text) => shootingInfo.injuredCount = text} keyboardType="numeric"></TextInput>
-              <TextInput style={styles.inputBox} onChangeText={(text) => shootingInfo.date = new Date()}></TextInput>
-              <TextInput style={styles.inputBox} onChangeText={(text) => shootingInfo.reportedBy = 1}></TextInput>
               {/* UPDATE WHEN AUTHENTICATION IS READY */}
           </View>
           <View style={styles.col}>
@@ -40,8 +38,6 @@ export default function Report({shootingInfo}) {
                 <Text style={styles.textBox}>המפגע</Text>
                 <Text style={styles.textBox}>סוג נשק</Text>
                 <Text style={styles.textBox}>מספר נפגעים</Text>
-                <Text style={styles.textBox}>זמן האירוע</Text>
-                <Text style={styles.textBox}>זהות המדווח</Text>
           </View>
       </View>
       </Card>

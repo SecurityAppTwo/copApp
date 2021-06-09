@@ -10,15 +10,11 @@ export default function Report() {
               <TextInput style={styles.inputBox}></TextInput>
               <TextInput style={styles.inputBox}></TextInput>
               <TextInput style={styles.inputBox}></TextInput>
-              <TextInput style={styles.inputBox}></TextInput>
-              <TextInput style={styles.inputBox}></TextInput>
           </View>
           <View style={styles.col}>
                 <Text style={styles.textBox}>סוג נשק</Text>
                 <Text style={styles.textBox}>נפגעים</Text>
                 <Text style={styles.textBox}>זמן האירוע</Text>
-                <Text style={styles.textBox}>זמן הדיווח</Text>
-                <Text style={styles.textBox}>זהות המדווח</Text>
           </View>
       </View>
     </View>
