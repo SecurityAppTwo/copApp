@@ -9,6 +9,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import Navbar from './navbar/Navbar.js';
 import axios from 'axios';
 import { getDistance } from 'geolib';
+import SignIn from './components/SignIn';
+
 
 export default function App() {
   const [facts, setFacts] = useState([]);
@@ -23,25 +25,23 @@ export default function App() {
       const parsedData = JSON.parse(event.data);
       if(event.data!=='[]'){
         let data=event.data;
-        // alert(event.data)
         notify(data);
       }
       setFacts((facts) => facts.concat(parsedData));
-      // console.log(data.type); // message
-      // console.log(data.data);
     });
   }, []);
 
 
 
   return (
-    <View style={{height:"100%"}}>
-      <NavigationContainer>
-      <Navbar></Navbar>
-    </NavigationContainer>
-    </View>
-    
-    // <Routes></Routes>
+      isSignedIn ?
+        <View style={{height:"100%"}}>
+          <NavigationContainer>
+            <Navbar/>
+          </NavigationContainer>
+        </View>
+      :
+      <SignIn setIsSignedIn={setIsSignedIn}/>
   );
 };
 
