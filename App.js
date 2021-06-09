@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import Routes from './router/Routes.js'
+import SignIn from './components/SignIn.js'
 import { NavigationContainer } from '@react-navigation/native';
 import Navbar from './navbar/Navbar.js';
+import {View} from 'react-native'
 
 const App = () => {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  
   return (
-    <NavigationContainer>
+    <View style={{height:"100%"}}>
+    {isSignedIn ? (
+      <NavigationContainer>
       <Navbar></Navbar>
     </NavigationContainer>
+    ) : (
+      <SignIn setIsSignedIn={setIsSignedIn}/>
+    )}
+    </View>
+    
     // <Routes></Routes>
   );
 };
