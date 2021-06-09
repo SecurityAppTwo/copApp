@@ -10,13 +10,9 @@ const App = () => {
   
   return (
     <View style={{height:"100%"}}>
-    {isSignedIn ? (
       <NavigationContainer>
       <Navbar></Navbar>
     </NavigationContainer>
-    ) : (
-      <SignIn setIsSignedIn={setIsSignedIn}/>
-    )}
     </View>
     
     // <Routes></Routes>

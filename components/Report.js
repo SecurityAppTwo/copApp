@@ -8,9 +8,6 @@ import KidnapBlock from './Kidnapping';
 import AccidentBlock from './Accident';
 import axios from 'axios';
 import * as Location from 'expo-location'
-import AsyncStorage from '@react-native-community/async-storage'
-// import store from 'react-native-simple-store'
-
 
 
 export default function Report(){

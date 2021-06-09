@@ -1,9 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { StyleSheet, View, Image, Button, Text } from 'react-native';
+import { StyleSheet, View, Image, Button, Text, AsyncStorage } from 'react-native';
 import { TextInput, Card } from 'react-native-paper';
-import AsyncStorage from '@react-native-community/async-storage'
-// import store from 'react-native-simple-store'
 import paraltaLogo from '../assets/jakeParalta.png';
 
 export default function SignIn({setIsSignedIn}) {
