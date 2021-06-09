@@ -17,6 +17,20 @@ export default function Report() {
   let accidentDetails = {injured:'', driver:'', injuredCount:0, date:new Date(), reportDate:new Date(), lon:0, lat:0, reportedBy: 1};
 
   let [selected, onChangeSelected] = React.useState("");
+
+  const saveReport = async (url, details) => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      setErrorMsg('Permission to access location was denied');
+      return;
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    details.lat = location.coords.latitude;
+    details.lon = location.coords.longitude;
+    axios.post(url, details).then(() => alert("הדיווח נשלח בהצלחה"))
+  };
+
   return (
     <ImageBackground source={require('../assets/brickback.jpg')} style={styles.container}>
 
@@ -47,41 +61,16 @@ export default function Report() {
       <Button title="שלח דיווח" style={styles.sendButton} onPress={() => {
         switch(selected){
           case ('shooting'):
-            Location.getCurrentPositionAsync({}).then(res => {
-              let location = res
-              shootingDetails.lat = location.coords.latitude;
-              shootingDetails.lon = location.coords.longitude;
-              axios.post('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/shootingEvent', shootingDetails).then(() => alert("הדיווח נשלח בהצלחה"))
-            });
-
+            saveReport('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/shootingEvent', shootingDetails);
             break;
             case ('kidnap'):
-                Location.getCurrentPositionAsync({}).then(res => {
-                  let location = res
-                  kidnapDetails.lat = location.coords.latitude;
-                  kidnapDetails.lon = location.coords.longitude;
-                  axios.post('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/kidnapEvent', kidnapDetails).then(() => alert("הדיווח נשלח בהצלחה"))
-                });
-                
-
+              saveReport('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/kidnapEvent', kidnapDetails);
               break;
               case ('accident'):
-                  Location.getCurrentPositionAsync({}).then(res => {
-                    let location = res
-                    accidentDetails.lat = location.coords.latitude;
-                    accidentDetails.lon = location.coords.longitude;
-                    axios.post('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/accidentEvent', accidentDetails).then(() => alert("הדיווח נשלח בהצלחה"))
-                  });
-
+                saveReport('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/accidentEvent', accidentDetails);
               break;
               case ('stabbing'):
-                  Location.getCurrentPositionAsync({}).then(res => {
-                    let location = res
-                    stabbingDetails.lat = location.coords.latitude;
-                    stabbingDetails.lon = location.coords.longitude;
-                    axios.post('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/stabbingEvent', stabbingDetails).then(() => alert("הדיווח נשלח בהצלחה"))
-                  });
-
+                saveReport('http://police-server-securityapp2.apps.openforce.openforce.biz/reports/add/stabbingEvent', stabbingDetails);
               break;
         }
       }}></Button>
