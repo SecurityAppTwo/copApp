@@ -14,16 +14,12 @@ export default function Report({kidnapInfo}) {
               <TextInput style={styles.inputBox} onChangeText={(text) => kidnapInfo.kidnapper = text}></TextInput>
               <TextInput style={styles.inputBox} onChangeText={(text) => kidnapInfo.kidnapped = text}></TextInput>
               <TextInput style={styles.inputBox} onChangeText={(text) => kidnapInfo.lastLocation = text}></TextInput>
-              <TextInput style={styles.inputBox} onChangeText={(text) => kidnapInfo.date = new Date()}></TextInput>
-              <TextInput style={styles.inputBox} onChangeText={(text) => kidnapInfo.reportedBy = 1}></TextInput>
             {/* UPDATE WHEN AUTHENTICATION IS READY */}
           </View>
           <View style={styles.col}>
                 <Text style={styles.textBox}>חוטף</Text>
                 <Text style={styles.textBox}>נחטף</Text>
                 <Text style={styles.textBox}>מיקום אחרון ידוע</Text>
-                <Text style={styles.textBox}>זמן האירוע</Text>
-                <Text style={styles.textBox}>מי דיווח</Text>
           </View>
       </View>
       </Card>

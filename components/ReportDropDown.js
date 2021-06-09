@@ -1,6 +1,8 @@
 import React ,{Component} from 'react';
+import DropDownPicker from 'react-native-dropdown-picker';
+import {MaterialCommunityIcons, FontAwesome5} from '@expo/vector-icons';
 
-class ReportDropDown extends Component {
+export class ReportDropDown extends Component {
   constructor(props) {
     super(props);
     
