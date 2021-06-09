@@ -29,7 +29,7 @@ export default function Report(){
     details.lon = location.coords.longitude;
     axios.post(url, details).then(() => alert("הדיווח נשלח בהצלחה"))
       };
-      
+
     return(
     <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start' , alignItems: 'center',}}>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
 
     container: {  
         flex: 1,
-        // backgroundColor: 'rgba(0, 102, 204, 0.8)',
+        backgroundColor: 'rgba(0, 102, 204, 0.1)',
     },
 
     headerView:{
@@ -119,7 +119,8 @@ const styles = StyleSheet.create({
     },
 
     reportCard:{
-        marginTop: '5%'
+        marginTop: '5%',
+        width: '90%',
     },
 
     pickerStyle:{
@@ -162,10 +163,10 @@ const pickerStyle = {
 		paddingBottom: 12,
 	},
 	inputAndroid: {
-		color: 'white',
+        color: 'white',
 	},
 	placeholderColor: 'white',
-	underline: { borderTopWidth: 0 },
+	underline: { borderTopWidth: 4},
 	icon: {
 		position: 'absolute',
 		backgroundColor: 'transparent',
@@ -178,6 +179,6 @@ const pickerStyle = {
 		width: 0,
 		height: 0,
 		top: 20,
-		right: 15,
+		right: 5,
 	},
 };
