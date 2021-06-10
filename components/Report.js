@@ -23,7 +23,7 @@ export default function Report(){
     let accidentDetails = {injured:'', driver:'', injuredCount:0, date:new Date(), reportDate:new Date(), lon:0, lat:0, reportedBy: 1};
   
     const saveReport = async (url, details) => {
-        // AsyncStorge.getItem('user_id').then((value) => {details.reportedBy = value})
+        AsyncStorge.getItem('user_id').then((value) => {details.reportedBy = value})
         let { status } = await Location.requestForegroundPermissionsAsync();
         if (status !== 'granted') {
           setErrorMsg('Permission to access location was denied');

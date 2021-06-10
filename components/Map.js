@@ -5,7 +5,7 @@ import { WebView } from 'react-native-webview';
 export default function Map() {
   return (
     <View style={styles.container}>
-        <WebView source={{ uri: 'http://alpha-maps-git-tmzmap2.apps.openforce.openforce.biz/' }} style={{width:420}}/>
+        <WebView source={{ uri: 'http://alpha-maps-yosef-read-only-tmzmap2.apps.openforce.openforce.biz/' }} style={{width:420}}/>
     </View>
   );
 }

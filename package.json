@@ -56,7 +56,6 @@
     "react-navigation-material-bottom-tabs": "^2.3.4",
     "react-scroll-paged-view": "^2.2.6",
     "reinput": "^3.7.2"
-
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
