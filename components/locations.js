@@ -46,13 +46,19 @@ export default function Loc() {
 }
 
 
-export function notify(data){
-  let d=JSON.parse(data)
+export async function notify(data){
+  let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+          setErrorMsg('Permission to access location was denied');
+          return;
+        }
+
+    let location = await Location.getCurrentPositionAsync({})
+    const d=JSON.parse(data);
           if(getDistance(
-          { latitude: Number(loc.coords.latitude), longitude: Number(loc.coords.longitude) },
-          { latitude: Number(d.lat), longitude:Number(d.lon)}
-      )<= 2000){
-        pushNotification(d);
+          { latitude: Number(location.coords.latitude), longitude: Number(location.coords.longitude) },
+          { latitude: Number(d.lat), longitude:Number(d.lon)})<= 2000){
+            pushNotification(d);
         }
 // alert(data["lon"]);
 
