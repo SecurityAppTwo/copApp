@@ -46,7 +46,7 @@ export default function Report(){
                     onValueChange={(value) => {setValue(value)}}
                     placeholder={{}}
                     style={pickerStyle}
-                    // useNativeAndroidPickerStyle={false}
+                    useNativeAndroidPickerStyle={false}
                     items={[
                     {label: 'ירי', value: 'shooting'},
                     {label: 'חטיפה', value: 'kidnap'},
@@ -129,9 +129,10 @@ const styles = StyleSheet.create({
     },
 
     logo:{
-        top:30,
+        marginTop:35,
         height: 80,
         width: 80,
+        // marginBottom:20
     },
         pickerStyle:{
         fontSize: 14,
