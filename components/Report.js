@@ -6,6 +6,7 @@ import StabbingBlock from './Stabbing.js';
 import ShootingBlock from './Shooting.js';
 import KidnapBlock from './Kidnapping';
 import AccidentBlock from './Accident';
+import AsyncStorge from '@react-native-async-storage/async-storage'
 
 import paraltaLogo from '../assets/jakeParalta.png';
 
@@ -22,6 +23,7 @@ export default function Report(){
     let accidentDetails = {injured:'', driver:'', injuredCount:0, date:new Date(), reportDate:new Date(), lon:0, lat:0, reportedBy: 1};
   
     const saveReport = async (url, details) => {
+        // AsyncStorge.getItem('user_id').then((value) => {details.reportedBy = value})
         let { status } = await Location.requestForegroundPermissionsAsync();
         if (status !== 'granted') {
           setErrorMsg('Permission to access location was denied');
