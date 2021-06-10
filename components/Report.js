@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, SafeAreaView, ScrollView, View, Pressable } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, ScrollView, View, Pressable , Image} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
 import StabbingBlock from './Stabbing.js';
 import ShootingBlock from './Shooting.js';
 import KidnapBlock from './Kidnapping';
 import AccidentBlock from './Accident';
+import AsyncStorge from '@react-native-async-storage/async-storage'
+
+import paraltaLogo from '../assets/jakeParalta.png';
+
 import axios from 'axios';
 import * as Location from 'expo-location'
 
@@ -19,6 +23,7 @@ export default function Report(){
     let accidentDetails = {injured:'', driver:'', injuredCount:0, date:new Date(), reportDate:new Date(), lon:0, lat:0, reportedBy: 1};
   
     const saveReport = async (url, details) => {
+        AsyncStorge.getItem('user_id').then((value) => {details.reportedBy = value})
         let { status } = await Location.requestForegroundPermissionsAsync();
         if (status !== 'granted') {
           setErrorMsg('Permission to access location was denied');
@@ -30,27 +35,27 @@ export default function Report(){
     details.lon = location.coords.longitude;
     axios.post(url, details).then(() => alert("הדיווח נשלח בהצלחה"))
       };
-      
+
     return(
     <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start' , alignItems: 'center',}}>
         
         <View style={styles.headerView}>
-            <Text style={styles.headerText}>דיווח</Text>
+            <Image source={paraltaLogo} style={styles.logo}></Image>
+            {/* <Text style={styles.headerText}>דיווח</Text> */}
             <View style={styles.dropDownView}>
-
-            <RNPickerSelect
-                onValueChange={(value) => {setValue(value)}}
-                placeholder={{}}
-                style={pickerStyle}
-                // useNativeAndroidPickerStyle={false}
-                items={[
-                {label: 'ירי', value: 'shooting'},
-                {label: 'חטיפה', value: 'kidnap'},
-                {label: 'תאונה', value: 'accident'},
-                {label: 'דקירה', value: 'stabbing'}
-            ]}           
-            />
+                <RNPickerSelect
+                    onValueChange={(value) => {setValue(value)}}
+                    placeholder={{}}
+                    style={pickerStyle}
+                    useNativeAndroidPickerStyle={false}
+                    items={[
+                    {label: 'ירי', value: 'shooting'},
+                    {label: 'חטיפה', value: 'kidnap'},
+                    {label: 'תאונה', value: 'accident'},
+                    {label: 'דקירה', value: 'stabbing'}
+                ]}           
+                />
             </View>
 
 
@@ -91,13 +96,14 @@ const styles = StyleSheet.create({
 
     container: {  
         flex: 1,
-        // backgroundColor: 'rgba(0, 102, 204, 0.8)',
+        backgroundColor: 'rgba(0, 102, 204, 0.1)',
     },
 
     headerView:{
         backgroundColor:'rgba(0, 102, 204, 0.8)',
         width:'100%',
         alignItems: 'center',
+        // flexWrap:'nowrap'
 
     },
 
@@ -111,7 +117,7 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth:1,
         textAlign: "center",
-        width: '60%',
+        width: '25%',
         color: "black"
     },
 
@@ -120,10 +126,17 @@ const styles = StyleSheet.create({
     },
 
     reportCard:{
-        marginTop: '5%'
+        marginTop: '5%',
+        width: '90%',
     },
 
-    pickerStyle:{
+    logo:{
+        marginTop:35,
+        height: 80,
+        width: 80,
+        // marginBottom:20
+    },
+        pickerStyle:{
         fontSize: 14,
         paddingHorizontal: 10,
         paddingVertical: 8,
@@ -163,10 +176,10 @@ const pickerStyle = {
 		paddingBottom: 12,
 	},
 	inputAndroid: {
-		color: 'white',
+        color: 'white',
 	},
 	placeholderColor: 'white',
-	underline: { borderTopWidth: 0 },
+	underline: { borderTopWidth: 4},
 	icon: {
 		position: 'absolute',
 		backgroundColor: 'transparent',
@@ -179,6 +192,6 @@ const pickerStyle = {
 		width: 0,
 		height: 0,
 		top: 20,
-		right: 15,
+		right: 5,
 	},
 };

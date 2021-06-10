@@ -1,45 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Switch } from 'react-native';
+import { StyleSheet, Text, View} from 'react-native';
 import { Card } from 'react-native-elements'
+import { TextInput } from 'react-native-paper';
 
-export default function Report({shootingInfo}) {
+export default function Shooting({shootingInfo}) {
   
-  // const [isEnabled, setIsEnabled] = React.useState(false);
-  // const toggleSwitch = () => {
-  //   isEnabled? shootingInfo.injuredType = 2 : shootingInfo.injuredType = 1
-  //   setIsEnabled(previousState => !previousState);
-  // };
-
   return (
-    <View style={styles.detailsBlock}>
-        <Card containerStyle={styles.card}>
-          <Card.Title style={{color:"#FFFFFF"}}>דיווח על אירוע ירי</Card.Title>
+    <View style={styles.containerStyle}>
+        <Card containerStyle={styles.card} borderRadius={3}>
+          <Card.Title style={{color:"#FFFFFF", fontSize:18}}>דיווח על אירוע ירי</Card.Title>
           <Card.Divider/>
-          <Card.Image source={require("../assets/shooting.jpeg")}></Card.Image>
-      <View style={styles.row} >
-          <View style={styles.col}>
-          
-          {/* <Switch style={{marginLeft: 40, marginTop:5, marginBottom: 10}}
-              trackColor={{ false: "#767577", true: "rgb(128, 204, 255)" }}
-              thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-              onValueChange={toggleSwitch}
-              value={isEnabled}
-              /> */}
-              <TextInput style={styles.inputBox} onChangeText={(text) => shootingInfo.injuredType = text}></TextInput>
+          <Card.Image source={require("../assets/shooting.jpeg")} style={styles.imgStyle}></Card.Image>
 
-
-              <TextInput style={styles.inputBox} onChangeText={(text) => shootingInfo.shooter = text}></TextInput>
-              <TextInput style={styles.inputBox} onChangeText={(text) => shootingInfo.weaponType = text}></TextInput>
-              <TextInput style={styles.inputBox} onChangeText={(text) => shootingInfo.injuredCount = text} keyboardType="numeric"></TextInput>
+              <TextInput label="פירוט נפגעים" style={styles.inputBox}  onChangeText={(text) => shootingInfo.injuredType = text}></TextInput>
+              <TextInput label="המפגע" style={styles.inputBox} onChangeText={(text) => shootingInfo.shooter = text}></TextInput>
+              <TextInput label="סוג נשק" style={styles.inputBox} onChangeText={(text) => shootingInfo.weaponType = text}></TextInput>
+              <TextInput label="מספר נפגעים" style={styles.inputBox}  onChangeText={(text) => shootingInfo.injuredCount = text} keyboardType="numeric"></TextInput> 
               {/* UPDATE WHEN AUTHENTICATION IS READY */}
-          </View>
-          <View style={styles.col}>
-                <Text style={styles.textBox}>פירוט נפגעים</Text>
-                <Text style={styles.textBox}>המפגע</Text>
-                <Text style={styles.textBox}>סוג נשק</Text>
-                <Text style={styles.textBox}>מספר נפגעים</Text>
-          </View>
-      </View>
+
       </Card>
     </View>
 
@@ -48,32 +26,28 @@ export default function Report({shootingInfo}) {
 }
 
 const styles = StyleSheet.create({
+
+  containerStyle:{
+    width:'100%',
+  },
+
   card:{
-    backgroundColor: "rgba(0,0,0,0.6)",
-},  
-  row: {
-    justifyContent: 'space-around',
-    flexDirection: "row"
+    backgroundColor: "rgba(0, 102, 204, 0.8)",
+  },  
+
+  imgStyle:{
+    borderColor:'rgba(214, 214, 214, 1)',
+    borderRadius:12
   },
-  col: {
-    justifyContent: 'space-around',
-    flexDirection: "column",
-    width: "50%"
-  },
+
   inputBox : {
       marginTop: 5,
       marginBottom: 5,
-      backgroundColor: "rgba(0,0,0,0.6)",
-      borderColor: "#FFFFFF",
-      borderWidth: 1,
-      borderRadius:5,
-      color:"#FFFFFF",
-      textAlign:"right"
+      borderColor: "rgba(214, 214, 214, 1)",
+      borderWidth: 2,
+      borderRadius:6,
+      textAlign:"right",
+      height: 56,
+      width: '100%'
   },
-  textBox: {
-    marginTop: 5,
-    marginBottom: 5,
-    backgroundColor: "rgba(0,0,0,0.6)",
-    color: "#FFFFFF"
-  }
 });
