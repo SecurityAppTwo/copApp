@@ -1,24 +1,32 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { StyleSheet, View, Image, Button, Text, AsyncStorage } from 'react-native';
+import { StyleSheet, View, Image, Button, Text } from 'react-native';
 import { TextInput, Card } from 'react-native-paper';
 import paraltaLogo from '../assets/jakeParalta.png';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function SignIn({setIsSignedIn}) {
 
+  const storeData = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value)
+      await AsyncStorage.setItem('user_id', jsonValue);
+      setIsSignedIn(true);
+    } catch (e) {
+    }
+  }
+
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    const [text, setText] = useState('');
 
     const login = () => {
       if (userName && password){
-        axios.get(`'http://police-server-securityapp2.apps.openforce.openforce.bizusers/validateUser?username=${userName}&password=${password}`)
+        axios.get(`http://police-server-securityapp2.apps.openforce.openforce.biz/users/validateUser?username=${userName}&password=${password}`)
         .then(result => {
           if (result.data.isValid){
             var id = result.data.id;
             if (result.data.isCop){
-              AsyncStorage.setItem('userId', id);
-              setIsSignedIn(true);
+              storeData(id);
             } else{
               alert('אינך שוטר המורשה להיכנס למערכת')
             }
@@ -45,7 +53,6 @@ export default function SignIn({setIsSignedIn}) {
             <View style={styles.button}>
                 <Button  color="rgba(0,0,0,0.6)" title="התחבר" onPress={login}/>
             </View>
-            <Text>{text}</Text>
         </View>
     );
 }
